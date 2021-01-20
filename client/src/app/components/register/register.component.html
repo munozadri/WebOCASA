@@ -1,0 +1,38 @@
+
+<h2 class="infoRegister">Por favor, completa el formulario de registro</h2>
+
+<div class="alert alert-success" *ngIf="status == 'success'" >
+    Registro completado correctamente, <a [routerLink]="['/login']">identificate aquí</a>
+</div>
+
+<div class="alert-warning" *ngIf="status == 'error'">
+    Registro no se ha completado...intenta con otro correo!!
+</div>
+<div id="register">
+          
+    <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)" >         
+        <p>            
+            <input type="text" name="name" #name="ngModel" [(ngModel)]="user.name" placeholder="name" required />
+            <span *ngIf="!name.valid && name.touched">
+                El nombre es obligatorio
+            </span>
+        </p>           
+        <p>
+            <input type="email" name="email" #email="ngModel" [(ngModel)]="user.email" placeholder="email" required />
+            <span *ngIf="!email.valid && email.touched">
+                El email es obligatorio
+            </span>
+        </p>      
+        <p>
+            <input type="password" name="password" #password="ngModel" [(ngModel)]="user.password" placeholder="password" required />
+            <span *ngIf="!password.valid && password.touched">
+                El password es obligatorio
+            </span>
+        </p>
+
+        <input type="submit" value="{{title}}" [disabled]="!registerForm.form.valid" />
+        <input type="reset" value="Limpiar" />
+                  
+    </form>
+
+  </div>

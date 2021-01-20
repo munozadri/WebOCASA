@@ -1,0 +1,34 @@
+<h1 class="infoLogin">{{title}}</h1>
+
+<div class="alert alert-success" *ngIf="status == 'success'" >
+    Te has identificado correctamente
+</div>
+
+<div class="alert-warning" *ngIf="status == 'error'">
+    No te has podido identificar correctamente
+</div>
+
+<div id="login">
+    <form #loginForm="ngForm" (ngSubmit)="onSubmit()"> 
+        <p>
+            <input type="email" name="email" #email="ngModel" [(ngModel)]="user.email" placeholder="email" required />
+            <span *ngIf="!email.valid && email.touched">
+                El email no es válido
+            </span>
+        </p>
+        <p>
+            <input type="password" name="password" #password="ngModel" [(ngModel)]="user.password" placeholder="password" required />
+            <span *ngIf="!password.valid && password.touched">
+                La constraseña no es válida
+            </span>
+        </p>
+        <p>
+            <a class="datosregister" href='/registro'>
+                ¿Te querés registrar? hacé click acá...!  
+            </a>                     
+        </p>    
+          <input type="submit" value="Login" />
+          <input type="reset" value="Limpiar" />    
+
+    </form>
+</div>
